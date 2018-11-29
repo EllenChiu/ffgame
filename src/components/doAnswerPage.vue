@@ -18,52 +18,54 @@
             <div class=" ansTitle">
               義民祭
             </div>
-            <draggable class="a_circle" v-model="food2Ans"
-            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250, onEnd:checked }" :move="allow">
-              <div class="hiden_cicle" :style="food2Ans.length > 0 ? {backgroundImage: 'url(static/img/' + food2Ans[0].name + '.png)'} : ''"></div>
+            <draggable class="a_circle" v-model="answer.ym"
+            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250, }"  @add="checked(answer.ym)" :move="allow" >
+              <!-- {{answer.ym[]}} -->
+              <div class="hiden_cicle" :style="answer.ym.length > 0 ? {backgroundImage: 'url(static/img/' + answer.ym[0].name + '.png)'} : ''"></div>
+              <!-- <div class="hiden_cicle" :style="{backgroundImage: 'url(static/img/' + answer.ym[0].name + '.png)'}"></div> -->
             </draggable>
           </div>
           <div class="ansBlock" style="top: 25%;left:45%">
             <div class="ansTitle">
               中秋節
             </div>
-            <draggable class="a_circle" v-model="food3Ans"
-            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }" :move="allow">
-              <div class="hiden_cicle" :style="food3Ans.length > 0 ? {backgroundImage: 'url(static/img/' + food3Ans[0].name + '.png)'} : ''"></div>
+            <draggable class="a_circle" v-model="answer.moon"
+            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }" @add="checked(answer.moon)" :move="allow">
+              <div class="hiden_cicle" :style="answer.moon.length > 0 ? {backgroundImage: 'url(static/img/' + answer.moon[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
           <div class="ansBlock" style="top: 0%;left:70%">
             <div class="ansTitle">
               端午節
             </div>
-            <draggable class="a_circle" v-model="food4Ans"
-            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }" :move="allow">
-              <div class="hiden_cicle" :style="food4Ans.length > 0 ? {backgroundImage: 'url(static/img/' + food4Ans[0].name + '.png)'} : ''"></div>
+            <draggable class="a_circle" v-model="answer.dw"
+            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }" @add="checked(answer.dw)" :move="allow">
+              <div class="hiden_cicle" :style="answer.dw.length > 0 ? {backgroundImage: 'url(static/img/' + answer.dw[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
           <div class="ansBlock" style="top: 48%;left:20%">
             <div class="ansTitle">
               天穿日
             </div>
-            <draggable class="a_circle" v-model="food5Ans"
-            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }" :move="allow">
-              <div class="hiden_cicle" :style="food5Ans.length > 0 ? {backgroundImage: 'url(static/img/' + food5Ans[0].name + '.png)'} : ''"></div>
+            <draggable class="a_circle" v-model="answer.tc"
+            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }" @add="checked(answer.tc)" :move="allow">
+              <div class="hiden_cicle" :style="answer.tc.length > 0 ? {backgroundImage: 'url(static/img/' + answer.tc[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
           <div class="ansBlock" style="top: 48%;left:70%">
             <div class="ansTitle">
               元宵節
             </div>
-            <draggable class="a_circle" v-model="food6Ans"
-            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }" :move="allow">
-              <div class="hiden_cicle" :style="food6Ans.length > 0 ? {backgroundImage: 'url(static/img/' + food6Ans[0].name + '.png)'} : ''"></div>
+            <draggable class="a_circle" v-model="answer.yx"
+            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }" @add="checked(answer.yx)" :move="allow">
+              <div class="hiden_cicle" :style="answer.yx.length > 0 ? {backgroundImage: 'url(static/img/' + answer.yx[0].name + '.png)'} : ''"></div>
             </draggable>
         </div>
       </div>
 
       <div class="right-div">
         <div class="q_div">
-          <draggable v-model="foodItems1" v-bind:options="{ group: { name: 'Orders', pull: true } }" :move="allow">
+          <draggable v-model="foodItems1" v-bind:options="{ group: { name: 'Orders', pull: 'clone' } }" :move="allow">
             <div v-for="o in foodItems1"
             v-bind:key="o.ans"
             class="q_circle"
@@ -72,7 +74,7 @@
           </draggable>
         </div>
         <div class="q_div">
-          <draggable v-model="foodItems2" v-bind:options="{ group: { name: 'Orders', pull: true } }" :move="allow">
+          <draggable v-model="foodItems2" v-bind:options="{ group: { name: 'Orders', pull: 'clone' } }" :move="allow">
             <div v-for="o in foodItems2"
             v-bind:key="o.ans"
             class="q_circle"
@@ -81,7 +83,7 @@
           </draggable>
         </div>
         <div class="q_div mrleft">
-          <draggable v-model="foodItems3" v-bind:options="{ group: { name: 'Orders', pull: true } }"  @start="checked"  :move="allow">
+          <draggable v-model="foodItems3" v-bind:options="{ group: { name: 'Orders', pull: 'clone' } }" :move="allow">
             <div v-for="o in foodItems3"
             v-bind:key="o.ans"
             class="q_circle"
@@ -135,72 +137,91 @@ export default {
   },
   data () {
     return {
-      dom: '',
       foodItems1: [{
         name: '01',
-        ans: 2,
+        text: '粢粑',
+        ans: 'ym',
         done: false
       }, {
         name: '02',
-        ans: 3,
+        text: '湯圓',
+        ans: null,
         done: false
       }, {
         name: '03',
-        ans: 4,
+        text: '柿餅',
+        ans: null,
         done: false
       }, {
         name: '04',
-        ans: 5,
+        text: '粄粽',
+        ans: 'dw',
         done: false
       }],
       foodItems2: [{
         name: '05',
-        ans: 6,
+        text: '新丁粄',
+        ans: 'yx',
         done: false
       }, {
         name: '06',
-        ans: 7,
+        text: '炸年糕',
+        ans: 'tc',
         done: false
       }, {
         name: '07',
-        ans: 8,
+        text: '封肉',
+        ans: '',
         done: false
       }, {
         name: '08',
-        ans: 9,
+        text: '粄條',
+        ans: null,
         done: false
       }],
       foodItems3: [{
         name: '09',
-        ans: 10,
+        text: '擂茶',
+        ans: null,
         done: false
       }, {
         name: '10',
-        ans: 11,
+        text: '南瓜',
+        ans: 'moon',
         done: false
       }],
-      food2Ans: [],
-      food3Ans: [],
-      food4Ans: [],
-      food5Ans: [],
-      food6Ans: [],
-      check: {
-        ym: '01',
-        tc: '06',
-        zq: '10',
-        dw: '04',
-        yx: '05'
+      answer: {
+        ym: [],
+        tc: [],
+        moon: [],
+        zq: [],
+        dw: [],
+        yx: []
       },
       corrected: false,
       endVideo: false,
-      videoSrc: 'https://www.youtube.com/embed/M7lc1UVf-VE'
+      videoSrc: 'https://www.youtube.com/embed/M7lc1UVf-VE',
+      score: 0
     }
   },
   watch: {
-    foodItems () {
-      if (this.foodItems.length === 6) {
+    score () {
+      if (this.score === 5) {
         this.corrected = true
       }
+    },
+    answer: {
+      handler (ansArr) {
+        let nowScore = 0
+        Object.keys(ansArr).map((key) => {
+          const foodAns = ansArr[key].length > 0 ? ansArr[key][0].ans : ''
+          if (foodAns === key) {
+            nowScore += 1
+          }
+        })
+        this.score = nowScore
+      },
+      deep: true
     }
   },
   filters: {
@@ -217,26 +238,27 @@ export default {
         this.$router.push('/')
       }
     },
-    checked (e) {
-      console.log(e)
+    checked (target) {
+      if (target.length > 1) {
+        target.pop()
+      }
     },
-    // getdata (evt) {
-    //   console.log(evt.draggedContext.element.id)
-    // },
-    // datadragEnd (evt) {
-    //   console.log('拖动前的索引 :' + evt.oldIndex)
-    //   console.log('拖动后的索引 :' + evt.newIndex)
-    //   console.log(this.foodItems)
-    // },
     allow (evt) {
       // console.log(evt.draggedContext.index)
       // console.log(evt.draggedContext.element)
       // console.log(evt.draggedContext.futureIndex)
+      // console.log('------------')
       // console.log(evt.relatedContext.index)
-      // console.log(evt.relatedContext.element)
+      // console.log(evt.relatedContext.element + 'dsfsdfsdfd')
+      // console.log(evt.relatedContext)
       // console.log(evt.relatedContext.list)
       // console.log(evt.relatedContext.component)
-      // return (evt.draggedContext.element.name!== 'ziba')
+      // console.log('-----end-----')
+      // const dragName = evt.draggedContext.element.name;
+      // if(dragName === targetValue) {
+      //   score += 1
+      // }
+      // return (evt.draggedContext.element.name == 'ziba')
     }
   }
 }
