@@ -9,7 +9,7 @@ Vue.use(Router)
 // Vue.use(VueGoogleCharts)
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',  //ghpage need not use history mode
   routes: [
     {
       path: '/',
