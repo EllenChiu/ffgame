@@ -19,11 +19,11 @@
               義民祭
             </div>
             <draggable class="a_circle" v-model="food2Ans"
-            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }" :move="allow">
+            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250, onEnd:checked }" :move="allow">
               <div class="hiden_cicle" :style="food2Ans.length > 0 ? {backgroundImage: 'url(static/img/' + food2Ans[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
-          <div class="ansBlock" style="top: 20%;left:45%">
+          <div class="ansBlock" style="top: 25%;left:45%">
             <div class="ansTitle">
               中秋節
             </div>
@@ -41,7 +41,7 @@
               <div class="hiden_cicle" :style="food4Ans.length > 0 ? {backgroundImage: 'url(static/img/' + food4Ans[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
-          <div class="ansBlock" style="top: 40%;left:20%">
+          <div class="ansBlock" style="top: 48%;left:20%">
             <div class="ansTitle">
               天穿日
             </div>
@@ -50,7 +50,7 @@
               <div class="hiden_cicle" :style="food5Ans.length > 0 ? {backgroundImage: 'url(static/img/' + food5Ans[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
-          <div class="ansBlock" style="top: 40%;left:70%">
+          <div class="ansBlock" style="top: 48%;left:70%">
             <div class="ansTitle">
               元宵節
             </div>
@@ -62,13 +62,34 @@
       </div>
 
       <div class="right-div">
-        <draggable v-model="foodItems" v-bind:options="{ group: { name: 'Orders', pull: true } }" :move="allow">
-          <div v-for="o in foodItems"
-          v-bind:key="o.ans"
-          class="q_circle"
-          :style="{backgroundImage: 'url(static/img/' + o.name + '.png)'}">
-          </div>
-        </draggable>
+        <div class="q_div">
+          <draggable v-model="foodItems1" v-bind:options="{ group: { name: 'Orders', pull: true } }" :move="allow">
+            <div v-for="o in foodItems1"
+            v-bind:key="o.ans"
+            class="q_circle"
+            :style="{backgroundImage: 'url(static/img/' + o.name + '.png)'}">
+            </div>
+          </draggable>
+        </div>
+        <div class="q_div">
+          <draggable v-model="foodItems2" v-bind:options="{ group: { name: 'Orders', pull: true } }" :move="allow">
+            <div v-for="o in foodItems2"
+            v-bind:key="o.ans"
+            class="q_circle"
+            :style="{backgroundImage: 'url(static/img/' + o.name + '.png)'}">
+            </div>
+          </draggable>
+        </div>
+        <div class="q_div mrleft">
+          <draggable v-model="foodItems3" v-bind:options="{ group: { name: 'Orders', pull: true } }"  @start="checked"  :move="allow">
+            <div v-for="o in foodItems3"
+            v-bind:key="o.ans"
+            class="q_circle"
+            :style="{backgroundImage: 'url(static/img/' + o.name + '.png)'}">
+            </div>
+          </draggable>
+        </div>
+
       </div>
     </div>
     <modal v-if="corrected" :width="'800px'">
@@ -115,7 +136,7 @@ export default {
   data () {
     return {
       dom: '',
-      foodItems: [{
+      foodItems1: [{
         name: '01',
         ans: 2,
         done: false
@@ -131,7 +152,8 @@ export default {
         name: '04',
         ans: 5,
         done: false
-      }, {
+      }],
+      foodItems2: [{
         name: '05',
         ans: 6,
         done: false
@@ -147,11 +169,8 @@ export default {
         name: '08',
         ans: 9,
         done: false
-      }, {
-        name: '',
-        ans: '',
-        done: false
-      }, {
+      }],
+      foodItems3: [{
         name: '09',
         ans: 10,
         done: false
@@ -198,6 +217,9 @@ export default {
         this.$router.push('/')
       }
     },
+    checked (e) {
+      console.log(e)
+    },
     // getdata (evt) {
     //   console.log(evt.draggedContext.element.id)
     // },
@@ -207,13 +229,13 @@ export default {
     //   console.log(this.foodItems)
     // },
     allow (evt) {
-      console.log(evt.draggedContext.index)
-      console.log(evt.draggedContext.element)
-      console.log(evt.draggedContext.futureIndex)
-      console.log(evt.relatedContext.index)
-      console.log(evt.relatedContext.element)
-      console.log(evt.relatedContext.list)
-      console.log(evt.relatedContext.component)
+      // console.log(evt.draggedContext.index)
+      // console.log(evt.draggedContext.element)
+      // console.log(evt.draggedContext.futureIndex)
+      // console.log(evt.relatedContext.index)
+      // console.log(evt.relatedContext.element)
+      // console.log(evt.relatedContext.list)
+      // console.log(evt.relatedContext.component)
       // return (evt.draggedContext.element.name!== 'ziba')
     }
   }
@@ -248,13 +270,19 @@ export default {
   border: 1px solid #ccc;
   padding: 5px;
 }
+.q_div {
+  // width: 90%;
+  &.mrleft {
+    margin-left: 105px;
+  }
+}
 .q_circle {
-  height: 100px;
-  width: 100px;
+  height: 95px;
+  width: 95px;
+  margin: 5px;
   border-radius: 99em;
   background-repeat: no-repeat;
   display: inline-block;
-  margin: 3px;
   background-size: 100%;
   background-position: center center;
 }
