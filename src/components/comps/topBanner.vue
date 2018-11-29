@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="row topLine">
       <div class="col-md-4">
-        <a class="top-link" href="/"><img class="back-btn-img" src="static/img/back-index.png" alt="回首頁"></a>
+        <a class="top-link btn-link" @click="goIndex"><img class="back-btn-img" src="static/img/back-index.png" alt="回首頁"></a>
       </div>
       <div class="col-md-4 title-area">
         <img class="title-img" src="static/img/quest-title.png"/>
@@ -16,6 +16,11 @@
 export default {
   name: 'top-banner',
   props: {
+  },
+  methods: {
+    goIndex () {
+      this.$router.push('/')
+    }
   }
 }
 </script>

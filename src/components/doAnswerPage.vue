@@ -20,7 +20,7 @@
             </div>
             <draggable class="a_circle" v-model="food2Ans"
             v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }" :move="allow">
-              <div class="hiden_cicle" :style="food2Ans.length > 0 ? {backgroundImage: 'url(/static/food/' + food2Ans[0].name + '.png)'} : ''"></div>
+              <div class="hiden_cicle" :style="food2Ans.length > 0 ? {backgroundImage: 'url(/static/img/' + food2Ans[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
           <div class="ansBlock" style="top: 20%;left:45%">
@@ -29,7 +29,7 @@
             </div>
             <draggable class="a_circle" v-model="food3Ans"
             v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }" :move="allow">
-              <div class="hiden_cicle" :style="food3Ans.length > 0 ? {backgroundImage: 'url(/static/food/' + food3Ans[0].name + '.png)'} : ''"></div>
+              <div class="hiden_cicle" :style="food3Ans.length > 0 ? {backgroundImage: 'url(/static/img/' + food3Ans[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
           <div class="ansBlock" style="top: 0%;left:70%">
@@ -38,7 +38,7 @@
             </div>
             <draggable class="a_circle" v-model="food4Ans"
             v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }" :move="allow">
-              <div class="hiden_cicle" :style="food4Ans.length > 0 ? {backgroundImage: 'url(/static/food/' + food4Ans[0].name + '.png)'} : ''"></div>
+              <div class="hiden_cicle" :style="food4Ans.length > 0 ? {backgroundImage: 'url(/static/img/' + food4Ans[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
           <div class="ansBlock" style="top: 40%;left:20%">
@@ -47,7 +47,7 @@
             </div>
             <draggable class="a_circle" v-model="food5Ans"
             v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }" :move="allow">
-              <div class="hiden_cicle" :style="food5Ans.length > 0 ? {backgroundImage: 'url(/static/food/' + food5Ans[0].name + '.png)'} : ''"></div>
+              <div class="hiden_cicle" :style="food5Ans.length > 0 ? {backgroundImage: 'url(/static/img/' + food5Ans[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
           <div class="ansBlock" style="top: 40%;left:70%">
@@ -56,7 +56,7 @@
             </div>
             <draggable class="a_circle" v-model="food6Ans"
             v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }" :move="allow">
-              <div class="hiden_cicle" :style="food6Ans.length > 0 ? {backgroundImage: 'url(/static/food/' + food6Ans[0].name + '.png)'} : ''"></div>
+              <div class="hiden_cicle" :style="food6Ans.length > 0 ? {backgroundImage: 'url(/static/img/' + food6Ans[0].name + '.png)'} : ''"></div>
             </draggable>
         </div>
       </div>
@@ -66,7 +66,7 @@
           <div v-for="o in foodItems"
           v-bind:key="o.ans"
           class="q_circle"
-          :style="{backgroundImage: 'url(/static/food/' + o.name + '.png)'}">
+          :style="{backgroundImage: 'url(/static/img/' + o.name + '.png)'}">
           </div>
         </draggable>
       </div>
@@ -90,7 +90,7 @@
         </div>
       </div>
     </modal>
-    <modal v-if="endVideo" :width="'100%'" :bgColor="'black'" @maskClick="backIndex">
+    <modal v-if="endVideo" :width="'100%'"  :height="'80%'" :bgColor="'black'" @maskClick="backIndex">
       <div slot="body" class="video" style="height: 100%;text-align:center" >
         <iframe id="ytplayer" type="text/html" width="720" height="405" :src='videoSrc'
         frameborder="0" allowfullscreen ></iframe>
@@ -195,7 +195,7 @@ export default {
     backIndex () {
       const backIs = confirm('回到首頁?')
       if (backIs) {
-        location.href = '/'
+        this.$router.push('/')
       }
     },
     // getdata (evt) {
