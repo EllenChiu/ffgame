@@ -19,9 +19,9 @@
               義民祭
             </div>
             <draggable class="a_circle" v-model="answer.ym"
-            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250, }"  @add="checked(answer.ym)" :move="allow" >
+            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250, }">
               <!-- {{answer.ym[]}} -->
-              <div class="hiden_cicle" :style="answer.ym.length > 0 ? {backgroundImage: 'url(static/img/' + answer.ym[0].name + '.png)'} : ''"></div>
+              <div class="hiden_cicle" id="ym" :style="answer.ym.length > 0 ? {backgroundImage: 'url(static/img/' + answer.ym[0].name + '.png)'} : ''"></div>
               <!-- <div class="hiden_cicle" :style="{backgroundImage: 'url(static/img/' + answer.ym[0].name + '.png)'}"></div> -->
             </draggable>
           </div>
@@ -30,8 +30,8 @@
               中秋節
             </div>
             <draggable class="a_circle" v-model="answer.moon"
-            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }" @add="checked(answer.moon)" :move="allow">
-              <div class="hiden_cicle" :style="answer.moon.length > 0 ? {backgroundImage: 'url(static/img/' + answer.moon[0].name + '.png)'} : ''"></div>
+            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }">
+              <div class="hiden_cicle" id="moon" :style="answer.moon.length > 0 ? {backgroundImage: 'url(static/img/' + answer.moon[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
           <div class="ansBlock" style="top: 0%;left:70%">
@@ -39,8 +39,8 @@
               端午節
             </div>
             <draggable class="a_circle" v-model="answer.dw"
-            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }" @add="checked(answer.dw)" :move="allow">
-              <div class="hiden_cicle" :style="answer.dw.length > 0 ? {backgroundImage: 'url(static/img/' + answer.dw[0].name + '.png)'} : ''"></div>
+            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }">
+              <div class="hiden_cicle"  id="dw" :style="answer.dw.length > 0 ? {backgroundImage: 'url(static/img/' + answer.dw[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
           <div class="ansBlock" style="top: 48%;left:20%">
@@ -48,8 +48,8 @@
               天穿日
             </div>
             <draggable class="a_circle" v-model="answer.tc"
-            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }" @add="checked(answer.tc)" :move="allow">
-              <div class="hiden_cicle" :style="answer.tc.length > 0 ? {backgroundImage: 'url(static/img/' + answer.tc[0].name + '.png)'} : ''"></div>
+            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }">
+              <div class="hiden_cicle" id="tc" :style="answer.tc.length > 0 ? {backgroundImage: 'url(static/img/' + answer.tc[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
           <div class="ansBlock" style="top: 48%;left:70%">
@@ -57,15 +57,15 @@
               元宵節
             </div>
             <draggable class="a_circle" v-model="answer.yx"
-            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }" @add="checked(answer.yx)" :move="allow">
-              <div class="hiden_cicle" :style="answer.yx.length > 0 ? {backgroundImage: 'url(static/img/' + answer.yx[0].name + '.png)'} : ''"></div>
+            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }">
+              <div class="hiden_cicle" id="yx" :style="answer.yx.length > 0 ? {backgroundImage: 'url(static/img/' + answer.yx[0].name + '.png)'} : ''"></div>
             </draggable>
         </div>
       </div>
 
       <div class="right-div">
         <div class="q_div">
-          <draggable v-model="foodItems1" v-bind:options="{ group: { name: 'Orders', pull: 'clone' } }" :move="allow">
+          <draggable v-model="foodItems1" v-bind:options="{ group: { name: 'Orders', pull: true } }" :move="allow" >
             <div v-for="o in foodItems1"
             v-bind:key="o.ans"
             class="q_circle"
@@ -74,7 +74,7 @@
           </draggable>
         </div>
         <div class="q_div">
-          <draggable v-model="foodItems2" v-bind:options="{ group: { name: 'Orders', pull: 'clone' } }" :move="allow">
+          <draggable v-model="foodItems2" v-bind:options="{ group: { name: 'Orders', pull: true } }" :move="allow">
             <div v-for="o in foodItems2"
             v-bind:key="o.ans"
             class="q_circle"
@@ -83,7 +83,7 @@
           </draggable>
         </div>
         <div class="q_div mrleft">
-          <draggable v-model="foodItems3" v-bind:options="{ group: { name: 'Orders', pull: 'clone' } }" :move="allow">
+          <draggable v-model="foodItems3" v-bind:options="{ group: { name: 'Orders', pull: true } }" :move="allow">
             <div v-for="o in foodItems3"
             v-bind:key="o.ans"
             class="q_circle"
@@ -212,6 +212,7 @@ export default {
     },
     answer: {
       handler (ansArr) {
+        // console.dir(ansArr)
         let nowScore = 0
         Object.keys(ansArr).map((key) => {
           const foodAns = ansArr[key].length > 0 ? ansArr[key][0].ans : ''
@@ -239,26 +240,15 @@ export default {
       }
     },
     checked (target) {
+      console.dir(target)
       if (target.length > 1) {
         target.pop()
       }
     },
-    allow (evt) {
-      // console.log(evt.draggedContext.index)
-      // console.log(evt.draggedContext.element)
-      // console.log(evt.draggedContext.futureIndex)
-      // console.log('------------')
-      // console.log(evt.relatedContext.index)
-      // console.log(evt.relatedContext.element + 'dsfsdfsdfd')
-      // console.log(evt.relatedContext)
-      // console.log(evt.relatedContext.list)
-      // console.log(evt.relatedContext.component)
-      // console.log('-----end-----')
-      // const dragName = evt.draggedContext.element.name;
-      // if(dragName === targetValue) {
-      //   score += 1
-      // }
-      // return (evt.draggedContext.element.name == 'ziba')
+    allow (evt, tObj) {
+      if (evt.draggedContext.element.ans !== tObj.target.id) {
+        return false
+      }
     }
   }
 }

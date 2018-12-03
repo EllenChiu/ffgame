@@ -11,7 +11,7 @@
         <a class="btn-link" @click="goAnswer"><img src="static/img/btn-finish.png" alt="解謎完成"></a>
       </div>
     </div>
-    <modal v-if="showVideo" :width="'100%'" :height="'80%'" :bgColor="'black'" @maskClick="showVideo = false">
+    <modal v-if="showVideo" :width="'100%'" :height="'80%'" @maskClick="showVideo = false">
       <!-- <div slot="container-top">
         <button type="button" class="close"
                 @click="showVideo = false">
@@ -26,7 +26,6 @@
           <source src="https://www.dropbox.com/s/l6a0gpy3fl3l2q9/2013-03-26%2010.00.52.mp4" type="video/mp4">
         </video> -->
       </div>
-
     </modal>
   </div>
 </template>
