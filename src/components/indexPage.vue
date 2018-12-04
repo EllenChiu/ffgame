@@ -11,20 +11,17 @@
         <a class="btn-link" @click="goAnswer"><img src="static/img/btn-finish.png" alt="解謎完成"></a>
       </div>
     </div>
-    <modal v-if="showVideo" :width="'100%'" :height="'80%'" @maskClick="showVideo = false">
-      <!-- <div slot="container-top">
-        <button type="button" class="close"
-                @click="showVideo = false">
-          <span aria-hidden="true" style="font-size: 40px;">&times;</span>
-        </button>
-      </div> -->
+    <modal v-if="showVideo" :width="'100%'" :height="'100%'" @maskClick="showVideo = false">
       <div slot="body" class="video" style="height: 100%;text-align:center">
-        <!-- <iframe id="ytplayer" type="text/html" width="720" height="405" :src="videoSrc"
-        frameborder="0" allowfullscreen ></iframe> -->
-        <iframe :src="videoSrc" frameborder="0" allowfullscreen></iframe>
-        <!-- <video width="100%" height="100%" controls autoplay>
-          <source src="https://www.dropbox.com/s/l6a0gpy3fl3l2q9/2013-03-26%2010.00.52.mp4" type="video/mp4">
-        </video> -->
+        <div class="row " style="text-align: left;margin-bottom: 25px;">
+          <div class="col-md-4">
+            <a class=" btn-link" @click="showVideo = false"><img class="back-btn-img" src="static/img/back-index.png" alt="回首頁" style="width: 50%;"></a>
+          </div>
+        </div>
+        <iframe :src="videoSrc" frameborder="0" allowfullscreen style="height: 85%"></iframe>
+        <div style="margin-bottom: 150px;">
+
+        </div>
       </div>
     </modal>
   </div>
@@ -49,7 +46,7 @@ export default {
   watch: {
     showVideo () {
       if (this.showVideo) {
-        this.videoSrc = this.videoSrc + '?autoplay=1&mute=1'
+        this.videoSrc = this.videoSrc + '?autoplay=1'
       }
     }
   },

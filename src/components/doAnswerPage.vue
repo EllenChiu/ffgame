@@ -19,7 +19,7 @@
               義民祭
             </div>
             <draggable class="a_circle" v-model="answer.ym"
-            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250, }">
+            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 250, }">
               <!-- {{answer.ym[]}} -->
               <div class="hiden_cicle" id="ym" :style="answer.ym.length > 0 ? {backgroundImage: 'url(static/img/' + answer.ym[0].name + '.png)'} : ''"></div>
               <!-- <div class="hiden_cicle" :style="{backgroundImage: 'url(static/img/' + answer.ym[0].name + '.png)'}"></div> -->
@@ -30,7 +30,7 @@
               中秋節
             </div>
             <draggable class="a_circle" v-model="answer.moon"
-            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }">
+            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 250 }">
               <div class="hiden_cicle" id="moon" :style="answer.moon.length > 0 ? {backgroundImage: 'url(static/img/' + answer.moon[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
@@ -39,7 +39,7 @@
               端午節
             </div>
             <draggable class="a_circle" v-model="answer.dw"
-            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }">
+            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 250 }">
               <div class="hiden_cicle"  id="dw" :style="answer.dw.length > 0 ? {backgroundImage: 'url(static/img/' + answer.dw[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
@@ -48,7 +48,7 @@
               天穿日
             </div>
             <draggable class="a_circle" v-model="answer.tc"
-            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }">
+            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 250 }">
               <div class="hiden_cicle" id="tc" :style="answer.tc.length > 0 ? {backgroundImage: 'url(static/img/' + answer.tc[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
@@ -57,7 +57,7 @@
               元宵節
             </div>
             <draggable class="a_circle" v-model="answer.yx"
-            v-bind:options="{ group: { name: 'Orders', put: true }, animation: 250 }">
+            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 250 }">
               <div class="hiden_cicle" id="yx" :style="answer.yx.length > 0 ? {backgroundImage: 'url(static/img/' + answer.yx[0].name + '.png)'} : ''"></div>
             </draggable>
         </div>
@@ -113,12 +113,20 @@
         </div>
       </div>
     </modal>
-    <modal v-if="endVideo" :width="'100%'"  :height="'80%'" :bgColor="'black'" @maskClick="backIndex">
-      <div slot="body" class="video" style="height: 100%;text-align:center" >
-        <iframe id="ytplayer" type="text/html" width="720" height="405" :src='videoSrc'
-        frameborder="0" allowfullscreen ></iframe>
-      </div>
+    <modal v-if="endVideo" :width="'100%'" :height="'100%'">
+      <div slot="body" class="video" style="height: 100%;text-align:center">
+        <div class="row" style="text-align: left;margin-bottom: 25px;">
+          <div class="col-md-4">
+            <a class=" btn-link" @click="backIndex">
+              <img class="back-btn-img" src="static/img/back-index.png" alt="回首頁" style="width: 50%;">
+            </a>
+          </div>
+        </div>
+        <iframe :src="videoSrc" frameborder="0" allowfullscreen style="height: 85%"></iframe>
+        <div style="margin-bottom: 100px;">
 
+        </div>
+      </div>
     </modal>
   </div>
 </template>
@@ -232,15 +240,14 @@ export default {
     showEndVideo () {
       this.corrected = false
       this.endVideo = true
-    },
-    backIndex () {
-      const backIs = confirm('回到首頁?')
-      if (backIs) {
-        this.$router.push('/')
+      if (this.endVideo) {
+        this.videoSrc = this.videoSrc + '?autoplay=1'
       }
     },
+    backIndex () {
+      this.$router.push('/')
+    },
     checked (target) {
-      console.dir(target)
       if (target.length > 1) {
         target.pop()
       }
@@ -356,5 +363,9 @@ export default {
   padding: 2%;
   background: #f9f1d6;
 }
-
+iframe {
+  /* optional */
+  width: 100%;
+  height: 100%;
+}
 </style>
