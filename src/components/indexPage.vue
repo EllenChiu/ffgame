@@ -13,7 +13,7 @@
     </div>
     <modal v-if="showVideo" :width="'100%'" :height="'100%'" @maskClick="showVideo = false">
       <div slot="body" class="video" style="height: 100%;text-align:center">
-        <div class="row " style="text-align: left;margin-bottom: 25px;">
+        <div class="row " style="text-align: left;margin-bottom: 25px;margin-top:15px;">
           <div class="col-md-4">
             <a class=" btn-link" @click="showVideo = false"><img class="back-btn-img" src="static/img/back-index.png" alt="回首頁" style="width: 50%;"></a>
           </div>

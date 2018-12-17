@@ -31,13 +31,14 @@ export default {
   margin-left: 20px;
 }
 .back-btn-img {
-  width: 50%;
+  width: 45%;
+  margin-bottom: 3%;
 }
 .title-area {
   text-align: center;
 }
 .title-img {
-  width: 80%;
+  width: 105%;
 }
 a{
   color: #57595a;

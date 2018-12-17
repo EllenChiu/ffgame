@@ -101,7 +101,7 @@
             <div class="col-md-7 end-text">
               <img src="static/img/popup-text.png" alt="">
             </div>
-            <div class="col-md-5 put-right end-pic">
+            <div class="col-md-5 end-pic">
               <img src="static/img/popup-grandpa.png"/>
             </div>
           </div>
@@ -349,14 +349,17 @@ export default {
   padding-left: 3%;
 }
 .end-text {
-  padding: 13% 2%;
+  padding: 10% 0%;
   img {
     width: 100%;
+    margin-left: 8%;
   }
 }
 .end-pic {
   img {
-    width: 80%;
+    width: 65%;
+    margin-left: 25%;
+    margin-top: 10%;
   }
 }
 .end-modal-area {
