@@ -7,9 +7,10 @@ import doAnswerPage from '@/components/doAnswerPage'
 
 Vue.use(Router)
 // Vue.use(VueGoogleCharts)
+// ghpage need not use history mode   mode: 'history'
 
 export default new Router({
-  // mode: 'history',  //ghpage need not use history mode
+  mode: 'history',
   routes: [
     {
       path: '/',

@@ -19,7 +19,7 @@
               義民祭
             </div>
             <draggable class="a_circle" v-model="answer.ym"
-            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 250, }">
+            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 450, }">
               <!-- {{answer.ym[]}} -->
               <div class="hiden_cicle" id="ym" :style="answer.ym.length > 0 ? {backgroundImage: 'url(static/img/' + answer.ym[0].name + '.png)'} : ''"></div>
               <!-- <div class="hiden_cicle" :style="{backgroundImage: 'url(static/img/' + answer.ym[0].name + '.png)'}"></div> -->
@@ -30,7 +30,7 @@
               中秋節
             </div>
             <draggable class="a_circle" v-model="answer.moon"
-            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 250 }">
+            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 450 }">
               <div class="hiden_cicle" id="moon" :style="answer.moon.length > 0 ? {backgroundImage: 'url(static/img/' + answer.moon[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
@@ -39,7 +39,7 @@
               端午節
             </div>
             <draggable class="a_circle" v-model="answer.dw"
-            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 250 }">
+            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 450 }">
               <div class="hiden_cicle"  id="dw" :style="answer.dw.length > 0 ? {backgroundImage: 'url(static/img/' + answer.dw[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
@@ -48,7 +48,7 @@
               天穿日
             </div>
             <draggable class="a_circle" v-model="answer.tc"
-            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 250 }">
+            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 450 }">
               <div class="hiden_cicle" id="tc" :style="answer.tc.length > 0 ? {backgroundImage: 'url(static/img/' + answer.tc[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
@@ -57,7 +57,7 @@
               元宵節
             </div>
             <draggable class="a_circle" v-model="answer.yx"
-            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 250 }">
+            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 450 }">
               <div class="hiden_cicle" id="yx" :style="answer.yx.length > 0 ? {backgroundImage: 'url(static/img/' + answer.yx[0].name + '.png)'} : ''"></div>
             </draggable>
         </div>
@@ -65,7 +65,7 @@
 
       <div class="right-div">
         <div class="q_div">
-          <draggable v-model="foodItems1" v-bind:options="{ group: { name: 'Orders', pull: true } }" :move="allow" >
+          <draggable v-model="foodItems1" v-bind:options="{ group: { name: 'Orders', pull: true } }" :move="checkMove" @end="endDrag" @start="startDrag">
             <div v-for="o in foodItems1"
             v-bind:key="o.ans"
             class="q_circle"
@@ -179,7 +179,7 @@ export default {
       }, {
         name: '07',
         text: '封肉',
-        ans: '',
+        ans: null,
         done: false
       }, {
         name: '08',
@@ -209,7 +209,10 @@ export default {
       corrected: false,
       endVideo: false,
       videoSrc: 'https://www.youtube.com/embed/M7lc1UVf-VE',
-      score: 0
+      score: 0,
+      targetElement: null,
+  		canDrag:null,
+  		futureIndex:null
     }
   },
   watch: {
@@ -248,6 +251,7 @@ export default {
       this.$router.push('/')
     },
     checked (target) {
+      console.log(target)
       if (target.length > 1) {
         target.pop()
       }
@@ -256,7 +260,46 @@ export default {
       if (evt.draggedContext.element.ans !== tObj.target.id) {
         return false
       }
-    }
+    },
+    privateCheckMove: function(evt){
+			this.targetElement = evt.relatedContext.element
+      console.log(evt.relatedContext.element)
+			// if (evt.draggedContext.element.name=='odd'){
+			// 	return evt.draggedContext.futureIndex % 2 === 1
+			// }
+
+			// if (evt.draggedContext.element.name=='pair'){
+			// 	return evt.draggedContext.futureIndex % 2 === 0
+			// }
+
+			// if (evt.draggedContext.element.name=='apple'){
+			// 	return false
+			// }
+
+			// if (evt.relatedContext.element && evt.relatedContext.element.name=='strawberry'){
+			// 	return false
+			// }
+
+			// if (evt.relatedContext.list.length==2){
+			// 	return false
+			// }
+			return true;
+		},
+    checkMove: function(evt){
+			const res = this.privateCheckMove(evt)
+			this.canDrag=res;
+			this.futureIndex = evt.draggedContext.futureIndex;
+			return res;
+		},
+		endDrag: function (evt) {
+			this.canDrag=null;
+			this.targetElement=null;
+			this.futureIndex =null;
+      console.log(evt)
+		},
+		startDrag: function (evt) {
+			console.log(evt)
+		}
   }
 }
 </script>
