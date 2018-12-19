@@ -40,7 +40,7 @@ export default {
   data () {
     return {
       showVideo: false,
-      videoSrc: 'https://www.youtube.com/embed/pB8nwmbPfo4'
+      videoSrc: 'https://youtu.be/QZgadYdWAmc'
     }
   },
   watch: {

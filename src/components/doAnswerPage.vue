@@ -65,7 +65,7 @@
 
       <div class="right-div">
         <div class="q_div">
-          <draggable v-model="foodItems1" v-bind:options="{ group: { name: 'Orders', pull: true } }" :move="allow" >
+          <draggable v-model="foodItems1" v-bind:options="{ group: { name: 'Orders', pull: true }, animation: 250 }" :move="allow" >
             <div v-for="o in foodItems1"
             v-bind:key="o.ans"
             class="q_circle"
@@ -208,7 +208,7 @@ export default {
       },
       corrected: false,
       endVideo: false,
-      videoSrc: 'https://www.youtube.com/embed/M7lc1UVf-VE',
+      videoSrc: 'https://youtu.be/XSYzXtbdWvw',
       score: 0
     }
   },
