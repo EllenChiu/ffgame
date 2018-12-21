@@ -9,89 +9,57 @@
 字型：思源明體 -->
   <div class="wrapper">
     <top-banner></top-banner>
-    <div class="put-center title">
-      <!-- <h4>請配對正確的美食</h4> -->
-    </div>
-    <div class=" row ans-area-div">
-      <div class="left-div" style="position: relative;">
-          <div class="ansBlock" style="top: 0%;left:20%">
-            <div class=" ansTitle">
-              義民祭
-            </div>
-            <draggable class="a_circle" v-model="answer.ym"
-            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 3000, }">
-              <!-- {{answer.ym[]}} -->
-              <div class="hiden_cicle" id="ym" :style="answer.ym.length > 0 ? {backgroundImage: 'url(static/img/' + answer.ym[0].name + '.png)'} : ''"></div>
-              <!-- <div class="hiden_cicle" :style="{backgroundImage: 'url(static/img/' + answer.ym[0].name + '.png)'}"></div> -->
-            </draggable>
-          </div>
-          <div class="ansBlock" style="top: 25%;left:45%">
-            <div class="ansTitle">
-              中秋節
-            </div>
-            <draggable class="a_circle" v-model="answer.moon"
-            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 250 }">
-              <div class="hiden_cicle" id="moon" :style="answer.moon.length > 0 ? {backgroundImage: 'url(static/img/' + answer.moon[0].name + '.png)'} : ''"></div>
-            </draggable>
-          </div>
-          <div class="ansBlock" style="top: 0%;left:70%">
-            <div class="ansTitle">
-              端午節
-            </div>
-            <draggable class="a_circle" v-model="answer.dw"
-            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 250 }">
-              <div class="hiden_cicle"  id="dw" :style="answer.dw.length > 0 ? {backgroundImage: 'url(static/img/' + answer.dw[0].name + '.png)'} : ''"></div>
-            </draggable>
-          </div>
-          <div class="ansBlock" style="top: 48%;left:20%">
-            <div class="ansTitle">
-              天穿日
-            </div>
-            <draggable class="a_circle" v-model="answer.tc"
-            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 250 }">
-              <div class="hiden_cicle" id="tc" :style="answer.tc.length > 0 ? {backgroundImage: 'url(static/img/' + answer.tc[0].name + '.png)'} : ''"></div>
-            </draggable>
-          </div>
-          <div class="ansBlock" style="top: 48%;left:70%">
-            <div class="ansTitle">
-              元宵節
-            </div>
-            <draggable class="a_circle" v-model="answer.yx"
-            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 250 }">
-              <div class="hiden_cicle" id="yx" :style="answer.yx.length > 0 ? {backgroundImage: 'url(static/img/' + answer.yx[0].name + '.png)'} : ''"></div>
-            </draggable>
+    <div class="game">
+      <!-- <div style="display: flex; justify-content: stretch; margin-top: 50px; margin-right: 50px">
+        <div style="margin-left: 50px; flex: 1">
+          <Container behaviour="copy" group-name="1" :get-child-payload="getChildPayload1">
+            <Draggable v-for="item in items1" :key="item.id">
+              <div class="draggable-item">
+                {{item.data}}
+              </div>
+            </Draggable>
+          </Container>
         </div>
-      </div>
+        <div style="margin-left: 50px; flex: 1">
+          <Container group-name="1" :get-child-payload="getChildPayload2" @drop="onDrop('items2', $event)">
+            <Draggable v-for="item in foodItems1" :key="item.id">
+              <div class="draggable-item">
+                {{item.text}}
+              </div>
+            </Draggable>
+          </Container>
+        </div>
+      </div> -->
+      <div class=" row ans-area-div">
+        <div class="left-div" style="position: relative;">
+            <Container  group-name="1" :get-child-payload="getAns" @drag-end="allowDrop('ans', $event)">
+              <Draggable  v-for="(item, keys) in ans" :key="keys">
 
-      <div class="right-div">
-        <div class="q_div">
-          <draggable v-model="foodItems1" v-bind:options="{ group: { name: 'Orders', pull: true }, animation: 3000 }" :move="allow" >
-            <div v-for="o in foodItems1"
-            v-bind:key="o.ans"
-            class="q_circle"
-            :style="{backgroundImage: 'url(static/img/' + o.name + '.png)'}">
-            </div>
-          </draggable>
-        </div>
-        <div class="q_div">
-          <draggable v-model="foodItems2" v-bind:options="{ group: { name: 'Orders', pull: true }, animation: 3000 }" :move="allow">
-            <div v-for="o in foodItems2"
-            v-bind:key="o.ans"
-            class="q_circle"
-            :style="{backgroundImage: 'url(static/img/' + o.name + '.png)'}">
-            </div>
-          </draggable>
-        </div>
-        <div class="q_div mrleft">
-          <draggable v-model="foodItems3" v-bind:options="{ group: { name: 'Orders', pull: true } }" :move="allow">
-            <div v-for="o in foodItems3"
-            v-bind:key="o.ans"
-            class="q_circle"
-            :style="{backgroundImage: 'url(static/img/' + o.name + '.png)'}">
-            </div>
-          </draggable>
-        </div>
+                <div class="ansBlock" :style="{top: item.top, left: item.left}">
+                  <div class=" ansTitle">
+                    {{item.title}}
+                  </div>
+                  <div class="a_circle" >
+                    <div class="hiden_cicle" id="ym" :style="ans[0].name !== '' ? {backgroundImage: 'url(static/img/' + ans[0].name + '.png)'} : ''"></div>
+                  </div>
+                </div>
 
+                <!--  -->
+              </Draggable>
+            </Container>
+        </div>
+        <!--  right -->
+        <div class="right-div">
+          <div class="q_div">
+            <Container behaviour="move" group-name="1" :get-child-payload="getChildPayload2" @drop="onDrop('foodItems1', $event)">
+              <Draggable v-for="item in foodItems1" :key="item.ans">
+                <div class="q_circle"
+                :style="{backgroundImage: 'url(static/img/' + item.name + '.png)'}">
+                </div>
+              </Draggable>
+            </Container>
+          </div>
+        </div>
       </div>
     </div>
     <modal v-if="corrected" :width="'800px'">
@@ -133,36 +101,44 @@
 
 <script>
 import topBanner from './comps/topBanner'
-import draggable from 'vuedraggable'
+import { Container, Draggable } from 'vue-smooth-dnd'
 import Modal from './Modal/Modal'
+import { generateItems } from '../api/helps'
 
 export default {
   name: 'do-answer-page',
   components: {
     topBanner,
-    draggable,
+    Container,
+    Draggable,
     Modal
   },
   data () {
     return {
+      nowDrop: null,
       foodItems1: [{
         name: '01',
         text: '粢粑',
+        key: '0',
+        who: 'foodItems1',
         ans: 'ym',
         done: false
       }, {
         name: '02',
         text: '湯圓',
+        who: 'foodItems1',
         ans: null,
         done: false
       }, {
         name: '03',
         text: '柿餅',
+        who: 'foodItems1',
         ans: null,
         done: false
       }, {
         name: '04',
         text: '粄粽',
+        who: 'foodItems1',
         ans: 'dw',
         done: false
       }],
@@ -198,18 +174,41 @@ export default {
         ans: 'moon',
         done: false
       }],
-      answer: {
-        ym: [],
-        tc: [],
-        moon: [],
-        zq: [],
-        dw: [],
-        yx: []
-      },
+      ans: [{
+        title: 'ym',
+        name: '',
+        top: '0%',
+        left: '20%'
+      }, {
+        title: 'dw',
+        name: '',
+        top: '25%',
+        left: '45%'
+      }],
+      // answer: ['ym', 'tc', 'moon', 'zq', 'dw', '']{
+      //   ym: [],
+      //   tc: [],
+      //   moon: [],
+      //   zq: [],
+      //   dw: [],
+      //   yx: []
+      // },
       corrected: false,
       endVideo: false,
       videoSrc: 'https://youtu.be/XSYzXtbdWvw',
-      score: 0
+      score: 0,
+      items1: generateItems(15, i => ({
+        id: '1' + i,
+        data: `Source Draggable - ${i}`
+      })),
+      items2: generateItems(15, i => ({
+        id: '2' + i,
+        data: `Draggable 2 - ${i}`
+      })),
+      items3: generateItems(15, i => ({
+        id: '3' + i,
+        data: `Draggable 3 - ${i}`
+      }))
     }
   },
   watch: {
@@ -217,26 +216,75 @@ export default {
       if (this.score === 5) {
         this.corrected = true
       }
-    },
-    answer: {
-      handler (ansArr) {
-        // console.dir(ansArr)
-        let nowScore = 0
-        Object.keys(ansArr).map((key) => {
-          const foodAns = ansArr[key].length > 0 ? ansArr[key][0].ans : ''
-          if (foodAns === key) {
-            nowScore += 1
-          }
-        })
-        this.score = nowScore
-      },
-      deep: true
     }
+    // answer: {
+    //   handler (ansArr) {
+    //     // console.dir(ansArr)
+    //     let nowScore = 0
+    //     Object.keys(ansArr).map((key) => {
+    //       const foodAns = ansArr[key].length > 0 ? ansArr[key][0].ans : ''
+    //       if (foodAns === key) {
+    //         nowScore += 1
+    //       }
+    //     })
+    //     this.score = nowScore
+    //   },
+    //   deep: true
+    // }
   },
   filters: {
 
   },
   methods: {
+    shouldAcceptDrop (sourceContainerOptions, payload) {
+      return true
+    },
+    allowDrop (collection, dropResult) {
+      console.dir(dropResult)
+
+      const res = dropResult.payload;
+      // if(this[collection].ym)
+      const who = res.who;
+      const idx = res.key;
+      this[who].splice(idx, 1)[0];
+      // delete this[who][index];
+      return this[collection][0].name = res.name;
+      // const { removedIndex, addedIndex, payload } = dragResult
+      // if (removedIndex === null && addedIndex === null) return arr
+      // const result = [...arr];
+      // let itemToAdd = payload;
+      // if(itemToAdd.ans !== shouldANS) return false;
+      //
+      // if (removedIndex !== null) {
+      //   itemToAdd = result.splice(removedIndex, 1)[0]
+      // }
+      //
+      // if (addedIndex !== null) {
+      //   result.splice(addedIndex, 0, itemToAdd)
+      // }
+      // return result
+    },
+    onDrop (collection, dropResult) {
+      console.dir(collection)
+      console.log(dropResult)
+      // const { removedIndex, addedIndex, payload } = dragResult
+      // if (removedIndex === null && addedIndex === null) return arr
+      // if(payload.ans !== shouldANS) return false;
+      // this[collection] = applyDrag(this[collection], dropResult)
+    },
+    getChildPayload2 (index) {
+      console.log(index)
+      console.dir(this.foodItems1[index])
+      return this.foodItems1[index]
+    },
+    getAns (index) {
+      return this.ans[index]
+    },
+    getChildPayload3 (index) {
+      console.log(index)
+      console.dir(this.foodItems2[index])
+      return this.foodItems2[index]
+    },
     showEndVideo () {
       this.corrected = false
       this.endVideo = true
@@ -264,7 +312,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 @import '../assets/scss/main.scss';
-
+.smooth-dnd-container {
+  position: initial;
+}
 .pd50 {
   padding: 50px;
   // margin: 0px 10px;

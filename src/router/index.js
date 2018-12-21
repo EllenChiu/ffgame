@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import indexPage from '@/components/indexPage'
 import openVideoPage from '@/components/openVideoPage'
 import doAnswerPage from '@/components/doAnswerPage'
+import doAnswerPageNew from '@/components/doAnswerPageNew'
+
 // import VueGoogleCharts from 'vue-google-charts'
 
 Vue.use(Router)
@@ -21,11 +23,15 @@ export default new Router({
       name: 'openVideo',
       component: openVideoPage
     },
-
     {
       path: '/doanswer',
       name: 'DoAnswer',
       component: doAnswerPage
+    },
+    {
+      path: '/doanswer2',
+      name: 'doAnswerPageNew',
+      component: doAnswerPageNew
     }
   ]
 })
