@@ -9,7 +9,7 @@ module.exports = {
 
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/', //dev should '/' but deploy should './'
+    assetsPublicPath: './', //dev should '/' but deploy should './'
     proxyTable: {},
 
     // Various Dev Server settings
@@ -50,8 +50,8 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/ffgame/',
-
+    assetsPublicPath: './',  
+// /ffgame/ or ./
     /**
      * Source Maps
      */
