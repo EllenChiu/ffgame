@@ -19,7 +19,7 @@
               義民祭
             </div>
             <draggable class="a_circle" v-model="answer.ym"
-            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 250, }">
+            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 300, }">
               <!-- {{answer.ym[]}} -->
               <div class="hiden_cicle" id="ym" :style="answer.ym.length > 0 ? {backgroundImage: 'url(static/img/' + answer.ym[0].name + '.png)'} : ''"></div>
               <!-- <div class="hiden_cicle" :style="{backgroundImage: 'url(static/img/' + answer.ym[0].name + '.png)'}"></div> -->
@@ -30,7 +30,7 @@
               中秋節
             </div>
             <draggable class="a_circle" v-model="answer.moon"
-            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 250 }">
+            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 300 }">
               <div class="hiden_cicle" id="moon" :style="answer.moon.length > 0 ? {backgroundImage: 'url(static/img/' + answer.moon[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
@@ -39,7 +39,7 @@
               端午節
             </div>
             <draggable class="a_circle" v-model="answer.dw"
-            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 250 }">
+            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 300 }">
               <div class="hiden_cicle"  id="dw" :style="answer.dw.length > 0 ? {backgroundImage: 'url(static/img/' + answer.dw[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
@@ -48,7 +48,7 @@
               天穿日
             </div>
             <draggable class="a_circle" v-model="answer.tc"
-            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 250 }">
+            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 300 }">
               <div class="hiden_cicle" id="tc" :style="answer.tc.length > 0 ? {backgroundImage: 'url(static/img/' + answer.tc[0].name + '.png)'} : ''"></div>
             </draggable>
           </div>
@@ -57,7 +57,7 @@
               元宵節
             </div>
             <draggable class="a_circle" v-model="answer.yx"
-            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 250 }">
+            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 300 }">
               <div class="hiden_cicle" id="yx" :style="answer.yx.length > 0 ? {backgroundImage: 'url(static/img/' + answer.yx[0].name + '.png)'} : ''"></div>
             </draggable>
         </div>
@@ -65,7 +65,7 @@
 
       <div class="right-div">
         <div class="q_div">
-          <draggable v-model="foodItems1" v-bind:options="{ group: { name: 'Orders', pull: true }, animation: 250 }" :move="allow" >
+          <draggable v-model="foodItems1" v-bind:options="{ group: { name: 'Orders', pull: true }, ghostClass: 'ghost', animation: 300 }" :move="allow" >
             <div v-for="(o, keys) in foodItems1"
             v-bind:key="keys"
             class="q_circle"
@@ -74,7 +74,7 @@
           </draggable>
         </div>
         <div class="q_div">
-          <draggable v-model="foodItems2" v-bind:options="{ group: { name: 'Orders', pull: true }, animation: 250 }" :move="allow">
+          <draggable v-model="foodItems2" v-bind:options="{ group: { name: 'Orders', pull: true }, ghostClass: 'ghost', animation: 300 }" :move="allow">
             <div v-for="(o, keys) in foodItems2"
             v-bind:key="keys"
             class="q_circle"
@@ -83,7 +83,7 @@
           </draggable>
         </div>
         <div class="q_div mrleft">
-          <draggable v-model="foodItems3" v-bind:options="{ group: { name: 'Orders', pull: true } }" :move="allow">
+          <draggable v-model="foodItems3" v-bind:options="{ group: { name: 'Orders', pull: true }, ghostClass: 'ghost', animation: 300}" :move="allow">
             <div v-for="(o, keys) in foodItems3"
             v-bind:key="keys"
             class="q_circle"
@@ -198,7 +198,7 @@ export default {
       },
       corrected: false,
       endVideo: false,
-      videoSrc: 'https://youtu.be/XSYzXtbdWvw',
+      videoSrc: 'https://www.youtube.com/watch?v=XSYzXtbdWvw&feature=youtu.be',
       score: 0
     }
   },
@@ -360,5 +360,15 @@ iframe {
   /* optional */
   width: 100%;
   height: 100%;
+}
+.sortable-chosen{
+  transition: transform ease;
+
+}
+.ani {
+  transition-duration: 5s;
+}
+.ghost {
+  opacity: 0;
 }
 </style>
