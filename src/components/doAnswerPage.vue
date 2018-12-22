@@ -19,7 +19,7 @@
               義民祭
             </div>
             <draggable class="a_circle" v-model="answer.ym"
-            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 3000, }">
+            v-bind:options="{ group: { name: 'Orders', put: true, pull: false }, animation: 250, }">
               <!-- {{answer.ym[]}} -->
               <div class="hiden_cicle" id="ym" :style="answer.ym.length > 0 ? {backgroundImage: 'url(static/img/' + answer.ym[0].name + '.png)'} : ''"></div>
               <!-- <div class="hiden_cicle" :style="{backgroundImage: 'url(static/img/' + answer.ym[0].name + '.png)'}"></div> -->
@@ -65,18 +65,18 @@
 
       <div class="right-div">
         <div class="q_div">
-          <draggable v-model="foodItems1" v-bind:options="{ group: { name: 'Orders', pull: true }, animation: 3000 }" :move="allow" >
-            <div v-for="o in foodItems1"
-            v-bind:key="o.ans"
+          <draggable v-model="foodItems1" v-bind:options="{ group: { name: 'Orders', pull: true }, animation: 250 }" :move="allow" >
+            <div v-for="(o, keys) in foodItems1"
+            v-bind:key="keys"
             class="q_circle"
             :style="{backgroundImage: 'url(static/img/' + o.name + '.png)'}">
             </div>
           </draggable>
         </div>
         <div class="q_div">
-          <draggable v-model="foodItems2" v-bind:options="{ group: { name: 'Orders', pull: true }, animation: 3000 }" :move="allow">
-            <div v-for="o in foodItems2"
-            v-bind:key="o.ans"
+          <draggable v-model="foodItems2" v-bind:options="{ group: { name: 'Orders', pull: true }, animation: 250 }" :move="allow">
+            <div v-for="(o, keys) in foodItems2"
+            v-bind:key="keys"
             class="q_circle"
             :style="{backgroundImage: 'url(static/img/' + o.name + '.png)'}">
             </div>
@@ -84,8 +84,8 @@
         </div>
         <div class="q_div mrleft">
           <draggable v-model="foodItems3" v-bind:options="{ group: { name: 'Orders', pull: true } }" :move="allow">
-            <div v-for="o in foodItems3"
-            v-bind:key="o.ans"
+            <div v-for="(o, keys) in foodItems3"
+            v-bind:key="keys"
             class="q_circle"
             :style="{backgroundImage: 'url(static/img/' + o.name + '.png)'}">
             </div>
@@ -148,55 +148,45 @@ export default {
       foodItems1: [{
         name: '01',
         text: '粢粑',
-        ans: 'ym',
-        done: false
+        ans: 'ym'
       }, {
         name: '02',
         text: '湯圓',
-        ans: null,
-        done: false
+        ans: null
       }, {
         name: '03',
         text: '柿餅',
-        ans: null,
-        done: false
+        ans: null
       }, {
         name: '04',
         text: '粄粽',
-        ans: 'dw',
-        done: false
+        ans: 'dw'
       }],
       foodItems2: [{
         name: '05',
         text: '新丁粄',
-        ans: 'yx',
-        done: false
+        ans: 'yx'
       }, {
         name: '06',
         text: '炸年糕',
-        ans: 'tc',
-        done: false
+        ans: 'tc'
       }, {
         name: '07',
         text: '封肉',
-        ans: '',
-        done: false
+        ans: null
       }, {
         name: '08',
         text: '粄條',
-        ans: null,
-        done: false
+        ans: null
       }],
       foodItems3: [{
         name: '09',
         text: '擂茶',
-        ans: null,
-        done: false
+        ans: null
       }, {
         name: '10',
         text: '南瓜',
-        ans: 'moon',
-        done: false
+        ans: 'moon'
       }],
       answer: {
         ym: [],
