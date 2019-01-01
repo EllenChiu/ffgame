@@ -122,7 +122,11 @@
             </a>
           </div>
         </div>
-        <iframe :src="videoSrc" frameborder="0" allowfullscreen style="height: 85%"></iframe>
+        <video style="height:50%" autoplay controls>
+          <source src="static/video/ffgame-e.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+        </video>
+        <!-- <iframe :src="videoSrc" frameborder="0" allowfullscreen style="height: 85%"></iframe> -->
         <div style="margin-bottom: 100px;">
 
         </div>
@@ -230,9 +234,9 @@ export default {
     showEndVideo () {
       this.corrected = false
       this.endVideo = true
-      if (this.endVideo) {
-        this.videoSrc = this.videoSrc + '?autoplay=1&rel=0'
-      }
+      // if (this.endVideo) {
+      //   this.videoSrc = this.videoSrc + '?autoplay=1&rel=0'
+      // }
     },
     backIndex () {
       this.$router.push('/')
