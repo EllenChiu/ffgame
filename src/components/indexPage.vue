@@ -40,13 +40,13 @@ export default {
   data () {
     return {
       showVideo: false,
-      videoSrc: 'https://www.youtube.com/watch?v=QZgadYdWAmc&feature=youtu.be'
+      videoSrc: 'https://www.youtube.com/embed/QZgadYdWAmc'
     }
   },
   watch: {
     showVideo () {
       if (this.showVideo) {
-        this.videoSrc = this.videoSrc + '?autoplay=1'
+        this.videoSrc = this.videoSrc + '?autoplay=1&rel=0'
       }
     }
   },

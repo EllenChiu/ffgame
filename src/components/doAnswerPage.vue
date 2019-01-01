@@ -198,7 +198,7 @@ export default {
       },
       corrected: false,
       endVideo: false,
-      videoSrc: 'https://www.youtube.com/watch?v=XSYzXtbdWvw&feature=youtu.be',
+      videoSrc: 'https://www.youtube.com/embed/XSYzXtbdWvw',
       score: 0
     }
   },
@@ -231,7 +231,7 @@ export default {
       this.corrected = false
       this.endVideo = true
       if (this.endVideo) {
-        this.videoSrc = this.videoSrc + '?autoplay=1'
+        this.videoSrc = this.videoSrc + '?autoplay=1&rel=0'
       }
     },
     backIndex () {
