@@ -18,8 +18,9 @@
             <a class=" btn-link" @click="showVideo = false"><img class="back-btn-img" src="static/img/back-index.png" alt="回首頁" style="width: 50%;"></a>
           </div>
         </div>
-        <video style="height:50%" autoplay controls>
-          <source src="static/video/ffgame-s.mp4" type="video/mp4">
+        <video ref="videoEle" style="height:50%" autoplay controls>
+          <source src="static/video/ffgame-s_480.mp4" type="video/mp4">
+
         Your browser does not support the video tag.
         </video>
         <!-- <iframe :src="videoSrc" frameborder="0" allowfullscreen style="height: 85%"></iframe> -->
@@ -49,13 +50,11 @@ export default {
   },
   watch: {
     showVideo () {
-      // if (this.showVideo) {
-      //   this.videoSrc = this.videoSrc + '?autoplay=1&rel=0'
-      // }
+      if (this.showVideo) {
+        // const media = document.getElementById('video')
+        this.$refs.videoEle.play()
+      }
     }
-  },
-  filters: {
-
   },
   methods: {
     goAnswer () {

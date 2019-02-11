@@ -123,7 +123,7 @@
           </div>
         </div>
         <video style="height:50%" autoplay controls>
-          <source src="static/video/ffgame-e.mp4" type="video/mp4">
+          <source src="static/video/ffgame-e_480.mp4" type="video/mp4">
         Your browser does not support the video tag.
         </video>
         <!-- <iframe :src="videoSrc" frameborder="0" allowfullscreen style="height: 85%"></iframe> -->

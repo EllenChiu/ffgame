@@ -12,5 +12,13 @@ new Vue({
   el: '#app',
   router,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  http: {
+    root: './root',
+    headers: {
+      'Content-Range': 'bytes=0-5079413',
+      'Accept-Ranges': 'bytes',
+      'Content-Type': 'video/mp4'
+    }
+  }
 })
