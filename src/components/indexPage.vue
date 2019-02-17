@@ -12,14 +12,14 @@
         <a class="btn-link" @click="goAnswer"><img src="static/img/btn-finish.png" alt="解謎完成"></a>
       </div>
     </div>
-    <modal v-if="showVideo" :width="'100%'" :height="'100%'" @maskClick="showVideo = false">
+    <modal v-if="showVideo" :width="'100%'"  @maskClick="showVideo = false">
       <div slot="body" class="video" style="height: 100%;text-align:center">
         <div class="row " style="text-align: left;margin-bottom: 25px;margin-top:15px;">
           <div class="col-md-4">
             <a class=" btn-link" @click="showVideo = false"><img class="back-btn-img" src="static/img/back-index.png" alt="回首頁" style="width: 50%;"></a>
           </div>
         </div>
-        <video style="height:50%"
+        <video style="width: 73%; height: 100%"
                poster="static/img/video-poster.png"
                autoplay="true"
                controls="true"
@@ -29,7 +29,7 @@
         Your browser does not support the video tag.
         </video>
         <!-- <iframe :src="videoSrc" frameborder="0" allowfullscreen style="height: 85%"></iframe> -->
-        <div style="margin-bottom: 150px;">
+        <div style="margin-bottom: 200px;">
 
         </div>
       </div>
@@ -43,13 +43,6 @@ import Modal from './Modal/Modal'
 
 export default {
   name: 'index-page',
-  metaInfo: {
-    title: '擇日師的秘密 - The Screate of The Fortune Teller', // set a title
-    meta: [{ // set meta
-      name: 'viewport',
-      content: 'width=device-width, user-scalable=no'
-    }]
-  },
   components: {
     topBanner,
     Modal

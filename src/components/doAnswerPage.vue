@@ -122,7 +122,7 @@
             </a>
           </div>
         </div>
-        <video style="height:50%"
+        <video style="width: 73%;"
               poster="static/img/video-poster-end.png"
               autoplay="true"
               controls="true"
