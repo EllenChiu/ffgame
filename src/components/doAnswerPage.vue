@@ -122,7 +122,11 @@
             </a>
           </div>
         </div>
-        <video style="height:50%" autoplay controls>
+        <video style="height:50%"
+              poster="static/img/video-poster-end.png"
+              autoplay="true"
+              controls="true"
+              onclick="this.paused ? this.play() : this.pause();" >
           <source src="static/video/ffgame-e_480.mp4" type="video/mp4">
         Your browser does not support the video tag.
         </video>
@@ -202,7 +206,6 @@ export default {
       },
       corrected: false,
       endVideo: false,
-      videoSrc: 'https://www.youtube.com/embed/XSYzXtbdWvw',
       score: 0
     }
   },

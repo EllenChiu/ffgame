@@ -1,5 +1,6 @@
 <template >
   <div class="wrapper">
+
     <div class="main" style="text-align: center;">
       <img src="static/img/banner.png"/>
     </div>
@@ -18,13 +19,12 @@
             <a class=" btn-link" @click="showVideo = false"><img class="back-btn-img" src="static/img/back-index.png" alt="回首頁" style="width: 50%;"></a>
           </div>
         </div>
-        <video style="height:50%" autoplay controls>
+        <video style="height:50%"
+               poster="static/img/video-poster.png"
+               autoplay="true"
+               controls="true"
+               onclick="this.paused ? this.play() : this.pause();">
           <source src="static/video/ffgame-s_480.mp4" type="video/mp4">
-
-        Your browser does not support the video tag.
-        </video>
-        <video style="height:50%" autoplay controls>
-          <source src="static/video/movie.mp4" type="video/mp4">
 
         Your browser does not support the video tag.
         </video>
@@ -43,14 +43,20 @@ import Modal from './Modal/Modal'
 
 export default {
   name: 'index-page',
+  metaInfo: {
+    title: '擇日師的秘密 - The Screate of The Fortune Teller', // set a title
+    meta: [{ // set meta
+      name: 'viewport',
+      content: 'width=device-width, user-scalable=no'
+    }]
+  },
   components: {
     topBanner,
     Modal
   },
   data () {
     return {
-      showVideo: false,
-      videoSrc: 'https://www.youtube.com/embed/QZgadYdWAmc'
+      showVideo: false
     }
   },
   watch: {
