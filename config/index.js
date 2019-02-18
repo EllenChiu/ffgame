@@ -9,7 +9,7 @@ module.exports = {
 
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/', //dev should '/' but deploy should './'
+    assetsPublicPath: './', //dev should '/' but deploy should './'
     proxyTable: {},
 
     // Various Dev Server settings
@@ -50,8 +50,8 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: './',
-// /zhangjia0/ or ./
+    assetsPublicPath: '/zhangjia0/',
+// /zhangjia0/ or ./   //deploy to github should have folder name /zhangjia0/
     /**
      * Source Maps
      */
